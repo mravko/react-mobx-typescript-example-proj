@@ -1,6 +1,6 @@
 import * as React from 'react';
 import AddRow from './AddRow';
-import { GridModel } from './GridModel';
+import { GridModel } from '../../models/GridModel';
 import { observer } from 'mobx-react';
 
 export class GridProps {

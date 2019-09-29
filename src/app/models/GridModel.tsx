@@ -1,10 +1,15 @@
 import { observable, computed, action, runInAction } from 'mobx';
+import AppStore from 'app/stores/AppStore';
 export class GridModel {
-	constructor() {
+	constructor(appStore: AppStore) {
 		runInAction(() => {
 			this.data = [];
 		});
+
+		this.appStore = appStore;
 	}
+
+	appStore: AppStore
 
 	@observable
 	data: any[];

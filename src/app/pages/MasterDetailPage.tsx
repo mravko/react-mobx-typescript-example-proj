@@ -1,17 +1,20 @@
 import * as React from 'react';
 import Grid from 'app/components/Grid/Grid';
-import { GridModel } from 'app/components/Grid/GridModel';
-import { observer } from 'mobx-react';
+import { GridModel } from 'app/models/GridModel';
+import { observer, inject } from 'mobx-react';
+import AppStore from 'app/stores/AppStore';
 
 export interface IMasterDetailPageProps {
+	appStore?: AppStore
 }
 
+@inject("appStore")
 @observer
 export default class MasterDetailPage extends React.Component<IMasterDetailPageProps> {
 
 	constructor(props) {
 		super(props);
-		this.gridModel = new GridModel();
+		this.gridModel = new GridModel(props.appStore);
 
 	}
 
