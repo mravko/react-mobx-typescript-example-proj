@@ -1,15 +1,14 @@
 import { observable, computed, action, runInAction } from 'mobx';
-import AppStore from 'app/stores/AppStore';
+
 export class GridModel {
-	constructor(appStore: AppStore) {
+	constructor() {
 		runInAction(() => {
 			this.data = [];
 		});
-
-		this.appStore = appStore;
 	}
 
-	appStore: AppStore
+	@observable
+	activeRow;
 
 	@observable
 	data: any[];
@@ -30,6 +29,12 @@ export class GridModel {
 	@action
 	addRow(obj: any) {
 		this.data.push(obj);
+	}
+
+	@action
+	selectRow(obj: any) {
+		debugger;
+		this.activeRow = obj;
 	}
 
 	@action

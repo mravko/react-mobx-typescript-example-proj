@@ -1,6 +1,6 @@
 import * as React from 'react';
 import AddRow from './AddRow';
-import { GridModel } from '../../models/GridModel';
+import { GridModel } from '../model/GridModel';
 import { observer } from 'mobx-react';
 
 export class GridProps {
@@ -23,6 +23,7 @@ const Grid: React.FunctionComponent<GridProps> = observer((props) => {
 						return (
 							<tr key={r["id"]}>
 								{props.model.columns.map(c => <td key={r[c]}>{r[c]}</td>)}
+								<td onClick={() => props.model.selectRow(r)}>edit</td>
 							</tr>
 						);
 					})}

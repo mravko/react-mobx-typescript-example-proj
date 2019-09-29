@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Grid from 'app/components/Grid/Grid';
-import { GridModel } from 'app/models/GridModel';
+import Grid from 'app/components/Grid/views/Grid';
+import { GridModel } from 'app/components/Grid/model/GridModel';
 import { observer } from 'mobx-react';
 import AppStore from 'app/stores/AppStore';
 
@@ -12,7 +12,7 @@ export default class MasterDetailPage2 extends React.Component<IMasterDetailPage
 
 	constructor(props) {
 		super(props);
-		this.gridModel = new GridModel(props.appStore);
+		this.gridModel = new GridModel();
 
 	}
 

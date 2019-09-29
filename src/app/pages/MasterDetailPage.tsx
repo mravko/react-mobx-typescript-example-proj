@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Grid from 'app/components/Grid/Grid';
-import { GridModel } from 'app/models/GridModel';
 import { observer, inject } from 'mobx-react';
 import AppStore from 'app/stores/AppStore';
+import { MasterDetailModel } from 'app/components/MasterDetail/model/MasterDetailModel';
+import MasterDetail from 'app/components/MasterDetail/views/MasterDetail';
 
 export interface IMasterDetailPageProps {
 	appStore?: AppStore
@@ -14,20 +14,21 @@ export default class MasterDetailPage extends React.Component<IMasterDetailPageP
 
 	constructor(props) {
 		super(props);
-		this.gridModel = new GridModel(props.appStore);
+		this.masterDetailModel = new MasterDetailModel();
 
 	}
 
 	componentDidMount() {
 		//api call
-		this.gridModel.init();
+		this.masterDetailModel.init();
 	}
 
-	gridModel: GridModel;
+	masterDetailModel: MasterDetailModel;
+
 	public render() {
 		return (
 			<div>
-				<Grid model={this.gridModel} ></Grid>
+				<MasterDetail model={this.masterDetailModel} ></MasterDetail>
 			</div>
 		);
 	}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { GridModel } from '../../models/GridModel';
+import { GridModel } from '../model/GridModel';
 
 interface IAddRowProps {
 	model: GridModel
