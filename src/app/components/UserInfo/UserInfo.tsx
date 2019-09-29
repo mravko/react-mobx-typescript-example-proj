@@ -7,7 +7,7 @@ export interface IUserInfoProps {
 	store?: UserStore;
 }
 
-@inject((stores: any, nextProps: IUserInfoProps, context: any) => {
+@inject((stores: any) => {
 	return {
 		store: stores.appStore.userStore
 	}
