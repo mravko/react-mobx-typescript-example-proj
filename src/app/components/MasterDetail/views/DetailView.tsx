@@ -11,9 +11,9 @@ const DetailView: React.FunctionComponent<IDetailViewProps> = observer((props) =
 		<div>
 			{props.model.keys.map(k =>
 				<div key={k}>
-					<h3>
+					<h4>
 						{k}
-					</h3>
+					</h4>
 					<div>
 						{props.model.data[k]}
 					</div>
