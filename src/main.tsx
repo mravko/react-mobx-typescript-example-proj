@@ -8,7 +8,7 @@ import LandingPage from './app/pages/LandingPage';
 import AppStore from 'app/stores/AppStore';
 import MasterDetailPage from 'app/pages/MasterDetailPage';
 import MasterDetailPage2 from 'app/pages/MasterDetailPage2';
-import UserInfo from 'app/components/UserInfo/UserInfo';
+import Menu from 'app/components/Menu/Menu';
 
 const stores = {
   appStore: new AppStore()
@@ -21,8 +21,8 @@ configure({ enforceActions: 'always' });
 // render react DOM
 const App = ({ history }) => (
   <React.Fragment>
-    <UserInfo></UserInfo>
     <Router history={history}>
+      <Menu></Menu>
       <Route exact path="/" component={LandingPage} />
       <Route path="/master" component={MasterDetailPage} />
       <Route path="/master2" component={MasterDetailPage2} />

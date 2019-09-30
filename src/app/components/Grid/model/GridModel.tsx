@@ -33,7 +33,6 @@ export class GridModel {
 
 	@action
 	selectRow(obj: any) {
-		debugger;
 		this.activeRow = obj;
 	}
 

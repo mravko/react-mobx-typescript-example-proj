@@ -2,10 +2,18 @@ import * as React from 'react';
 import AddRow from './AddRow';
 import { GridModel } from '../model/GridModel';
 import { observer } from 'mobx-react';
+import styled from 'styled-components';
 
 export class GridProps {
 	model: GridModel
 }
+
+const Tr = styled.div`
+	:hover {
+		background-color: gray;
+	    cursor: pointer;
+	}
+`;
 
 const Grid: React.FunctionComponent<GridProps> = observer((props) => {
 	if (!props.model.hasData)
@@ -21,10 +29,9 @@ const Grid: React.FunctionComponent<GridProps> = observer((props) => {
 				<tbody>
 					{props.model.data.map(r => {
 						return (
-							<tr key={r["id"]}>
+							<Tr onClick={() => props.model.selectRow(r)} key={r["id"]}>
 								{props.model.columns.map(c => <td key={r[c]}>{r[c]}</td>)}
-								<td onClick={() => props.model.selectRow(r)}>edit</td>
-							</tr>
+							</Tr>
 						);
 					})}
 				</tbody>

@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { observer, inject } from 'mobx-react';
 import UserStore from 'app/stores/UserStore';
+import styled from 'styled-components';
 
+const UserInfoWrapper = styled.div`
+	display: flex;
+	flex-direction: horizontal;
+`;
 
 export interface IUserInfoProps {
 	store?: UserStore;
@@ -25,18 +30,18 @@ export default class UserInfo extends React.Component<IUserInfoProps> {
 	};
 	public render() {
 		return (
-			<div>
+			<UserInfoWrapper>
 				{this.props.store.isUserLoggedIn ?
-					<div>
+					<React.Fragment>
 						<div>{this.props.store.loggedInUser.userName}</div>
 						<button onClick={this.logoutUser}>Log out</button>
-					</div> :
-					<div>
+					</React.Fragment> :
+					<React.Fragment>
 						<div>not authenticated</div>
 						<button onClick={this.loginUser}>Log In</button>
-					</div>
+					</React.Fragment>
 				}
-			</div>
+			</UserInfoWrapper>
 		);
 	}
 }
