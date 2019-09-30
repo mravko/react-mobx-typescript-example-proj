@@ -41,6 +41,11 @@ export class GridModel {
 
 	@action
 	init() {
-		this.data = [{ id: 1, value: 5 }, { id: 2, value: 6 }];
+		this.data = [
+			{ id: 1, name: 'Marko', surname: 'Vuckovik' },
+			{ id: 2, name: 'Salvadordalu', surname: 'Kojetoj' },
+			{ id: 3, name: 'Butrosgali', surname: 'Tojetoj' },
+			{ id: 4, name: 'Tos', surname: 'Tkajbombata' }
+		];
 	}
 }

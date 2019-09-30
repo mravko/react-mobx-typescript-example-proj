@@ -17,7 +17,10 @@ const DetailView: React.FunctionComponent<IDetailViewProps> = inject("appStore")
 						{k}
 					</h4>
 					<div>
-						{props.model.data[k]}
+						<input type="text" value={props.model.data[k]} onChange={(e) => {
+							props.model.setDataValue(k, e.target.value);
+						}} />
+
 					</div>
 				</div>)}
 		</div>);

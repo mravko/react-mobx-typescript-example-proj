@@ -12,7 +12,7 @@ export class GridProps {
 
 const Tr = styled.tr`
 	:hover {
-		background-color: gray;
+		background-color: lightgray;
 	    cursor: pointer;
 	}
 `;

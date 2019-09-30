@@ -33,7 +33,7 @@ const AddRow: React.FunctionComponent<IAddRowProps> = (props) => {
 		<FormWrapper>
 			<form onSubmit={(e) => { e.preventDefault(); handleClick(props.model, refs); }}>
 				{props.model.columns.map(f => (
-					<div className="form-group mb-2">
+					<div key={f} className="form-group mb-2">
 						<label key={f}>{f}</label>
 						<input className="form-control" required ref={refs[f]} type="text"></input>
 					</div>))}
