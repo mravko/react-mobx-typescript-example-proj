@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DetailModel } from "../model/DetailModel";
+import { DetailModel } from "../models/DetailModel";
 import { observer } from 'mobx-react';
 
 interface IDetailViewProps {

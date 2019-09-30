@@ -1,6 +1,6 @@
 import * as React from 'react';
 import AddRow from './AddRow';
-import { GridModel } from '../model/GridModel';
+import { GridModel } from '../models/GridModel';
 import { observer, inject } from 'mobx-react';
 import styled from 'styled-components';
 import AppStore from 'app/stores/AppStore';

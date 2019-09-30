@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Grid from 'app/components/Grid/views/Grid';
-import { GridModel } from 'app/components/Grid/model/GridModel';
+import { GridModel } from 'app/components/Grid/models/GridModel';
 import { observer } from 'mobx-react';
 import AppStore from 'app/stores/AppStore';
 

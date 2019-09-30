@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { observer, inject } from 'mobx-react';
 import AppStore from 'app/stores/AppStore';
-import { MasterDetailModel } from 'app/components/MasterDetail/model/MasterDetailModel';
+import { MasterDetailModel } from 'app/components/MasterDetail/models/MasterDetailModel';
 import MasterDetail from 'app/components/MasterDetail/views/MasterDetail';
 import { RouteComponentProps } from 'react-router';
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Grid from '../../Grid/views/Grid';
-import { MasterDetailModel } from '../model/MasterDetailModel';
+import { MasterDetailModel } from '../models/MasterDetailModel';
 import { observer } from 'mobx-react';
 import DetailView from './DetailView';
 

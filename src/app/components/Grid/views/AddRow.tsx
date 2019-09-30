@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { GridModel } from '../model/GridModel';
+import { GridModel } from '../models/GridModel';
 import styled from 'styled-components';
 
 interface IAddRowProps {
@@ -35,7 +35,7 @@ const AddRow: React.FunctionComponent<IAddRowProps> = (props) => {
 			<AddRowWrapper>
 				{props.model.columns.map(f => (
 					<div key={f}>
-						{f}: <input ref={refs[f]} type="text"></input>
+						{f}: <input required ref={refs[f]} type="text"></input>
 					</div>
 				))}
 				<button type="submit">Add</button>

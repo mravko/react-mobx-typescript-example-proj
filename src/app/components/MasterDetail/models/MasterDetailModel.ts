@@ -1,4 +1,4 @@
-import { GridModel } from "app/components/Grid/model/GridModel";
+import { GridModel } from "app/components/Grid/models/GridModel";
 import { observable, reaction, action, runInAction } from "mobx";
 import { DetailModel } from "./DetailModel";
 import AppStore from "app/stores/AppStore";
