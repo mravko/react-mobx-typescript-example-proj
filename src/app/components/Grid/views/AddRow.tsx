@@ -20,9 +20,8 @@ const handleClick = (model, refs) => {
 	});
 }
 
-const AddRowWrapper = styled.div`
-	display: flex;
-	direction: horizontal;
+const FormWrapper = styled.div`
+	width: 350px;
 `;
 
 const AddRow: React.FunctionComponent<IAddRowProps> = (props) => {
@@ -31,16 +30,16 @@ const AddRow: React.FunctionComponent<IAddRowProps> = (props) => {
 		refs[column] = React.createRef()
 	}
 	return (
-		<form onSubmit={(e) => { e.preventDefault(); handleClick(props.model, refs); }}>
-			<AddRowWrapper>
+		<FormWrapper>
+			<form onSubmit={(e) => { e.preventDefault(); handleClick(props.model, refs); }}>
 				{props.model.columns.map(f => (
-					<div key={f}>
-						{f}: <input required ref={refs[f]} type="text"></input>
-					</div>
-				))}
-				<button type="submit">Add</button>
-			</AddRowWrapper>
-		</form>
+					<div className="form-group mb-2">
+						<label key={f}>{f}</label>
+						<input className="form-control" required ref={refs[f]} type="text"></input>
+					</div>))}
+				<button className="btn btn-secondary btn-lg btn-block" type="submit">Add</button>
+			</form>
+		</FormWrapper>
 	);
 };
 
