@@ -23,7 +23,7 @@ const Grid: React.FunctionComponent<GridProps> = inject("appStore")(observer((pr
 
 	return (
 		<React.Fragment>
-			<table className="table">
+			<table className="table table-bordered">
 				<thead>
 					<tr>
 						{props.model.columns.map(c => <th key={c}>{c}</th>)}
