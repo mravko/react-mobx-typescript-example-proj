@@ -1,32 +1,34 @@
 import * as React from 'react';
-import Grid from 'app/components/Grid/views/Grid';
-import { GridModel } from 'app/components/Grid/models/GridModel';
-import { observer } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 import AppStore from 'app/stores/AppStore';
+import { MasterDetailModel } from 'app/components/MasterDetail/models/MasterDetailModel';
+import MasterDetail from 'app/components/MasterDetail/views/MasterDetail';
+import { RouteComponentProps } from 'react-router';
 
-export interface IMasterDetailPageProps {
-	appStore?: AppStore
+export interface IMasterDetailPageProps extends RouteComponentProps {
+	appStore ?: AppStore
 }
+
+@inject("appStore")
 @observer
 export default class MasterDetailPage2 extends React.Component<IMasterDetailPageProps> {
 
-	constructor(props) {
+	constructor(props: IMasterDetailPageProps) {
 		super(props);
-		this.gridModel = new GridModel();
-
+		this.masterDetailModel = new MasterDetailModel(props.appStore);
 	}
 
 	componentDidMount() {
 		//api call
-		//should be through store
-		this.gridModel.init();
+		this.props.appStore.setPageTitle("Master detail page 2");
 	}
 
-	gridModel: GridModel;
+	masterDetailModel: MasterDetailModel;
+
 	public render() {
 		return (
 			<div>
-				<Grid model={this.gridModel} ></Grid>
+				<MasterDetail model={this.masterDetailModel} ></MasterDetail>
 			</div>
 		);
 	}

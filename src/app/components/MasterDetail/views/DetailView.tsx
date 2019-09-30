@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { DetailModel } from "../models/DetailModel";
-import { observer } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
+import AppStore from 'app/stores/AppStore';
 
 interface IDetailViewProps {
-	model: DetailModel
+	model: DetailModel,
+	appStore?: AppStore
 }
 
-const DetailView: React.FunctionComponent<IDetailViewProps> = observer((props) => {
+const DetailView: React.FunctionComponent<IDetailViewProps> = inject("appStore")(observer((props) => {
 	return (
 		<div>
 			{props.model.keys.map(k =>
@@ -19,6 +21,6 @@ const DetailView: React.FunctionComponent<IDetailViewProps> = observer((props) =
 					</div>
 				</div>)}
 		</div>);
-});
+}));
 
 export default DetailView;

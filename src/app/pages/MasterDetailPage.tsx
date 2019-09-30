@@ -20,6 +20,7 @@ export default class MasterDetailPage extends React.Component<IMasterDetailPageP
 
 	componentDidMount() {
 		//api call
+		this.props.appStore.setPageTitle("Master detail page");
 	}
 
 	masterDetailModel: MasterDetailModel;
