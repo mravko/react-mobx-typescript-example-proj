@@ -6,17 +6,22 @@ import { createBrowserHistory } from 'history';
 import { Router, Route } from 'react-router';
 import LandingPage from './app/pages/LandingPage';
 import AppStore from 'app/stores/AppStore';
+import RoutingStore from 'app/stores/RoutingStore';
 import MasterDetailPage from 'app/pages/MasterDetailPage';
 import MasterDetailPage2 from 'app/pages/MasterDetailPage2';
 import Menu from 'app/components/Menu/Menu';
-
-const stores = {
-  appStore: new AppStore()
-};
-// prepare MobX stores
-const history = createBrowserHistory();
+import { syncHistoryWithStore } from 'mobx-react-router';
 
 configure({ enforceActions: 'always' });
+
+const browserHistory = createBrowserHistory();
+const routingStore: RoutingStore = new RoutingStore();
+const history = syncHistoryWithStore(browserHistory, routingStore);
+
+// prepare MobX stores
+const stores = {
+  appStore: new AppStore(routingStore)
+};
 
 // render react DOM
 const App = ({ history }) => (

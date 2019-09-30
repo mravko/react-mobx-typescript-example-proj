@@ -6,9 +6,12 @@ export class DetailModel {
 			console.log('data has changed');
 		});
 	}
+	
 	saveReaction;
+
 	@observable
 	data;
+
 	@action
 	closeDetail() {
 		this.saveReaction();
