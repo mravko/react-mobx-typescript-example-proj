@@ -5,6 +5,9 @@ export class GridModel {
 		runInAction(() => {
 			this.data = [];
 		});
+
+		this.init();
+		this.activeRow = null;
 	}
 
 	@observable

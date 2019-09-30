@@ -1,7 +1,7 @@
-import { GridModel } from "app/components/Grid/models/GridModel";
 import { observable, reaction, action, runInAction } from "mobx";
 import { DetailModel } from "./DetailModel";
 import AppStore from "app/stores/AppStore";
+import { GridModel } from "app/components/Grid/models/GridModel";
 
 export class MasterDetailModel {
 	constructor(appStore: AppStore) {
@@ -36,6 +36,7 @@ export class MasterDetailModel {
 		this.detailModel = new DetailModel(data);
 	}
 
+	@action
 	openDetailFromId(id) {
 		let data = this.masterModel.data.find((d) => parseInt(d.id) === parseInt(id));
 		if (data)
@@ -44,10 +45,12 @@ export class MasterDetailModel {
 			this.detailModel = null;
 	}
 
+	@action
 	routeToDetailId(id) {
 		this.appStore.routingStore.setQueryValue("detailsId", id);
 	}
 
+	@action
 	routeToDetail(data) {
 		this.routeToDetailId(data.id);
 	}

@@ -16,7 +16,6 @@ export default class MasterDetailPage extends React.Component<IMasterDetailPageP
 	constructor(props: IMasterDetailPageProps) {
 		super(props);
 		this.masterDetailModel = new MasterDetailModel(props.appStore);
-		this.masterDetailModel.masterModel.init();
 	}
 
 	componentDidMount() {
