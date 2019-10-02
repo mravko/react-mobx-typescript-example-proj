@@ -21,11 +21,12 @@ const Menu: React.FunctionComponent<IMenuProps> = () => {
 			<Link to="/">Home</Link>
 		</MenuItemWrapper>
 		<MenuItemWrapper>
-			<Link to="/master">MasterDetail</Link>
+			<Link to="/grid">Grid only</Link>
 		</MenuItemWrapper>
 		<MenuItemWrapper>
-			<Link to="/master2">MasterDetail 2</Link>
+			<Link to="/master">Master detail</Link>
 		</MenuItemWrapper>
+		
 		<UserInfo></UserInfo>
 	</MenuWrapper>;
 };

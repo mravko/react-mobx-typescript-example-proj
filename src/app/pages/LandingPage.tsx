@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { inject } from 'mobx-react';
 import AppStore from 'app/stores/AppStore';
 import { useEffect } from 'react';
+import StoreProvider from 'app/stores/StoreProvider';
 
 interface ILandingPageProps {
   appStore?: AppStore
 }
 
-const LandingPage: React.FunctionComponent<ILandingPageProps> = inject("appStore")((props) => {
+const LandingPage: React.FunctionComponent<ILandingPageProps> = () => {
   useEffect(() => {
-    props.appStore.setPageTitle("Landing page")
+    StoreProvider.stores.appStore.setPageTitle("Landing page")
   }, []);
   
   return (
@@ -17,6 +17,6 @@ const LandingPage: React.FunctionComponent<ILandingPageProps> = inject("appStore
       <div>Hello, this is the landing page</div>
     </React.Fragment>
   );
-});
+};
 
 export default LandingPage;

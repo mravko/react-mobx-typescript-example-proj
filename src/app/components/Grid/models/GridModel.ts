@@ -4,10 +4,9 @@ export class GridModel {
 	constructor() {
 		runInAction(() => {
 			this.data = [];
+			this.init();
+			this.activeRow = null;
 		});
-
-		this.init();
-		this.activeRow = null;
 	}
 
 	@observable
