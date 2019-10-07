@@ -1,10 +1,15 @@
 import { observable, reaction, action, computed, toJS } from "mobx";
-export class DetailModel {
+import RootModel from "app/models/RootModel";
+
+export class DetailModel extends RootModel {
 	constructor(data) {
+		super();
+
 		this.data = data;
-		this.saveReaction = reaction(() => toJS(this.data), () => {
+
+		this.reactions.push(reaction(() => toJS(this.data), () => {
 			alert(`You haven't made a change for 3s. The data is saved on the server.`);
-		}, { delay: 3000 });
+		}, { delay: 3000 }));
 	}
 
 	saveReaction;

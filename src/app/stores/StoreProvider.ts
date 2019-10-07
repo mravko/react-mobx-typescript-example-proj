@@ -14,7 +14,7 @@ class StoreProvider {
 
 	static get stores(): IStores {
 		if (this.singleton == null) {
-			console.info('creating stores singleton');
+			console.debug('creating stores singleton');
 			const routingStore: RoutingStore = new RoutingStore();
 
 			this.singleton = {

@@ -1,19 +1,32 @@
 import * as React from 'react';
 import Grid from '../../Grid/views/Grid';
 import { MasterDetailModel } from '../models/MasterDetailModel';
-import { observer } from 'mobx-react';
 import DetailView from './DetailView';
+import { observer } from 'mobx-react';
 
-interface IMasterDetailProps {
-	model: MasterDetailModel
+export interface IMasterDetailProps {
 }
 
-const MasterDetail: React.FunctionComponent<IMasterDetailProps> = observer((props) => {
-	return (
-		<React.Fragment>
-			<Grid model={props.model.masterModel}></Grid>
-			{props.model.detailModel ? <DetailView model={props.model.detailModel} /> : null}
-		</React.Fragment>);
-});
+@observer
+export default class MasterDetail extends React.Component<IMasterDetailProps> {
+	constructor(props) {
+		super(props);
+		
+		this.viewModel = new MasterDetailModel();
+	}
+	
+	viewModel: MasterDetailModel;
 
-export default MasterDetail;
+	componentWillUnmount() {
+		this.viewModel.disposeReactions();
+	}
+
+	public render() {
+		return (
+			<React.Fragment>
+				<Grid model={this.viewModel.masterModel}></Grid>
+				{this.viewModel.detailModel ? <DetailView model={this.viewModel.detailModel} /> : null}
+			</React.Fragment>
+		);
+	}
+}

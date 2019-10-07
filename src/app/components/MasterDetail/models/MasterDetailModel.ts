@@ -2,25 +2,30 @@ import { observable, reaction, action, runInAction } from "mobx";
 import { DetailModel } from "./DetailModel";
 import { GridModel } from "app/components/Grid/models/GridModel";
 import StoreProvider from "app/stores/StoreProvider";
+import RootModel from "app/models/RootModel";
 
-export class MasterDetailModel {
+export class MasterDetailModel extends RootModel {
 	constructor() {
+		super();
 
 		runInAction(() => {
 			this.masterModel = new GridModel();
 		});
 
-		reaction(() => {
-			return this.masterModel.activeRow;
-		}, () => {
-			this.routeToDetail(this.masterModel.activeRow)
-		});
+		this.reactions.push(
+			reaction(() => {
+				return this.masterModel.activeRow;
+			}, () => {
+				this.routeToDetail(this.masterModel.activeRow)
+			})
+		);
 
-		reaction(() => StoreProvider.stores.appStore.routingStore.queryStringValue,
+		this.reactions.push(reaction(() => StoreProvider.stores.appStore.routingStore.queryStringValue,
 			() => {
 				const detailsId = StoreProvider.stores.appStore.routingStore.queryValue("detailsId");
 				this.openDetailFromId(parseInt(detailsId));
-			}, { fireImmediately: true });
+			}, { fireImmediately: true })
+		);
 	}
 
 	masterModel: GridModel;
