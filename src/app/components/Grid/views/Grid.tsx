@@ -29,7 +29,7 @@ const Grid: React.FunctionComponent<GridProps> = inject("appStore")(observer((pr
 						{props.model.columns.map(c => <th key={c}>{c}</th>)}
 					</tr></thead>
 				<tbody>
-					{props.model.data.map(r => {
+					{props.model.rows.map(r => {
 						return (
 							<Tr onClick={() => props.model.selectRow(r)} key={r["id"]}>
 								{props.model.columns.map(c => <td key={r[c]}>{r[c]}</td>)}

@@ -1,4 +1,5 @@
 import { observable, computed, action, runInAction } from 'mobx';
+import StoreProvider from 'app/stores/StoreProvider';
 
 export class GridModel {
 	constructor() {
@@ -14,6 +15,13 @@ export class GridModel {
 
 	@observable
 	data: any[];
+
+	@computed
+	get rows(): any[] {
+		if (!StoreProvider.stores.appStore.userStore.isUserLoggedIn)
+			return this.data.filter((r) => r["_private"] === false);
+		return this.data;
+	}
 
 	@computed
 	get columns(): string[] {
@@ -41,10 +49,10 @@ export class GridModel {
 	@action
 	init() {
 		this.data = [
-			{ id: 1, name: 'Marko', surname: 'Vuckovik' },
-			{ id: 2, name: 'Salvadordalu', surname: 'Kojetoj' },
-			{ id: 3, name: 'Butrosgali', surname: 'Tojetoj' },
-			{ id: 4, name: 'Tos', surname: 'Tkajbombata' }
+			{ id: 1, name: 'Marko', surname: 'Vuckovik', _private: false },
+			{ id: 2, name: 'Salvadordalu', surname: 'Kojetoj', _private: false },
+			{ id: 3, name: 'Butrosgali', surname: 'Tojetoj', _private: false },
+			{ id: 4, name: 'Tos', surname: 'Tkajbombata', _private: true }
 		];
 	}
 }
