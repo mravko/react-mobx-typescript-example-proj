@@ -26,7 +26,9 @@ const Menu: React.FunctionComponent<IMenuProps> = () => {
 		<MenuItemWrapper>
 			<Link to="/master">Master detail</Link>
 		</MenuItemWrapper>
-		
+		<MenuItemWrapper>
+			<Link to="/game">Game</Link>
+		</MenuItemWrapper>
 		<UserInfo></UserInfo>
 	</MenuWrapper>;
 };

@@ -10,6 +10,7 @@ import GridOnlyPage from 'app/pages/GridOnlyPage';
 import Menu from 'app/components/Menu/Menu';
 import { syncHistoryWithStore } from 'mobx-react-router';
 import storeProvider from 'app/stores/StoreProvider';
+import GamePage from 'app/pages/GamePage';
 
 configure({ enforceActions: 'always' });
 
@@ -24,6 +25,7 @@ const App = ({ history }) => (
       <Route exact path="/" component={LandingPage} />
       <Route path="/grid" component={GridOnlyPage} />
       <Route path="/master" component={MasterDetailPage} />
+      <Route path="/game" component={GamePage} />
     </Router>
   </React.Fragment>
 );
