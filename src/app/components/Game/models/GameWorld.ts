@@ -41,7 +41,7 @@ export class GameWorldModel extends RootModel {
 	ltbl() {
 		for (let index = 0; index < 50; index++) {
 			const p = this.randomPosition;
-			this.souls.push(new HerbivoreModel(p.x, p.y, index, this.timeDimension));
+			this.souls.push(new HerbivoreModel(p.x, p.y, index, this.timeDimension, { maxX: this.worldWidth, maxY: this.worldHeight }));
 		}
 	}
 }

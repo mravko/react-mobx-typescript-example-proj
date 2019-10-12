@@ -2,7 +2,10 @@ import RootModel from "app/models/RootModel";
 import { observable, runInAction, reaction, action } from "mobx";
 import { TimeDimensionModel } from "./TimeDimensionModel";
 export class SoulModel extends RootModel {
-	constructor(x: number, y: number, id: number, timeAware: TimeDimensionModel) {
+	constructor(x: number, y: number, id: number,
+		timeAware: TimeDimensionModel,
+		worldBoundaries: { maxX: number, maxY: number }
+	) {
 		super();
 
 		runInAction(() => {
@@ -14,7 +17,7 @@ export class SoulModel extends RootModel {
 		reaction(() => {
 			return timeAware.seconds
 		}, () => {
-			this.move();
+			this.move(worldBoundaries);
 		});
 	}
 
@@ -28,21 +31,25 @@ export class SoulModel extends RootModel {
 	positionY: number;
 
 	@action
-	move() {
+	move(worldBoundaries: { maxX: number, maxY: number }) {
 
 		const direction = this.getRandomInt(1, 5);
 		console.log("moving", direction);
 		if (direction == 1) { //top
-			this.positionY++;
+			if (this.positionY + 1 < worldBoundaries.maxY)
+				this.positionY++;
 		}
 		else if (direction == 2) { //right
-			this.positionX++;
+			if (this.positionX + 1 < worldBoundaries.maxX)
+				this.positionX++;
 		}
 		else if (direction == 3) { //bottom
-			this.positionY--;
+			if (this.positionY - 1 > 1)
+				this.positionY--;
 		}
 		else { //left
-			this.positionX--;
+			if (this.positionX - 1 > 1)
+				this.positionX--;
 		}
 	}
 
@@ -50,5 +57,5 @@ export class SoulModel extends RootModel {
 		min = Math.ceil(min);
 		max = Math.floor(max);
 		return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-	  }
+	}
 }
