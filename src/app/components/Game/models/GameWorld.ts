@@ -4,6 +4,7 @@ import { HerbivoreModel } from "./Herbivore";
 import { CarnivoreModel } from "./CarnivoreModel";
 import { SoulModel } from "./Soul";
 import { TimeDimensionModel } from "./TimeDimensionModel";
+import { LocationModel } from "./LocationModel";
 
 export class GameWorldModel extends RootModel {
 	constructor(height: number, width: number) {
@@ -44,12 +45,12 @@ export class GameWorldModel extends RootModel {
 
 	@action
 	ltbl() {
-		for (let index = 0; index < 10; index++) {
+		for (let index = 0; index < 500; index++) {
 			const p = this.randomPosition;
 			this.souls.push(new HerbivoreModel(p.x, p.y, `h${index}`, this.timeDimension, this));
 		}
 
-		for (let index = 0; index < 5; index++) {
+		for (let index = 0; index < 20; index++) {
 			const p = this.randomPosition;
 			const c = new CarnivoreModel(p.x, p.y, `c${index}`, this.timeDimension, this);
 
@@ -59,25 +60,12 @@ export class GameWorldModel extends RootModel {
 		let tempLocations = {};
 		for (let i = 0; i <= this.worldHeight; i++) {
 			for (let j = 0; j <= this.worldWidth; j++) {
-				tempLocations[`${i}_${j}`] = new LocationModel();
+				tempLocations[`${i}_${j}`] = new LocationModel(`${i}_${j}`, this.timeDimension);
 			}
 		}
 		extendObservable(this.locations, tempLocations);
 
 		window["world"] = this;
-	}
-}
-
-class LocationModel {
-	@observable
-	carnivore: CarnivoreModel;
-	@observable
-	herbivore: HerbivoreModel;
-
-	@action
-	resetLocation() {
-		this.carnivore = null;
-		this.herbivore = null;
 	}
 }
 

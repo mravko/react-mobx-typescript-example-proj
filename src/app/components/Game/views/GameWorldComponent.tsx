@@ -17,7 +17,7 @@ export default class GameWorldComponent extends React.Component<IGameWorldProps>
 	constructor(props) {
 		super(props);
 
-		this.viewModel = new GameWorldModel(10, 10);
+		this.viewModel = new GameWorldModel(100, 100);
 		this.viewModel.ltbl();
 	}
 

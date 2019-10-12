@@ -1,15 +1,20 @@
 import { SoulModel } from "./Soul";
 import { TimeDimensionModel } from "./TimeDimensionModel";
-import { action } from "mobx";
+import { action, reaction } from "mobx";
 import { GameWorldModel } from "./GameWorld";
 
 export class HerbivoreModel extends SoulModel {
 	constructor(x: number, y: number, id: string, timeAware: TimeDimensionModel, world: GameWorldModel) {
-		super(x, y, id, timeAware, world);
+		super(x, y, id);
 		this.world = world;
-	}
 
-	world: GameWorldModel;
+		this.disposers.push(reaction(() => {
+			return timeAware.seconds;
+		}, (val : number) => {
+			if(val % 2 === 0)
+				this.move();
+		}));
+	}
 
 	@action
 	move() {
@@ -19,7 +24,7 @@ export class HerbivoreModel extends SoulModel {
 			location.herbivore = null;
 		}
 
-		super.move(this.world);
+		super.move();
 
 		location = this.world.locations[`${this.positionY}_${this.positionX}`];
 		if (location) {

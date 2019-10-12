@@ -1,11 +1,9 @@
 import RootModel from "app/models/RootModel";
-import { observable, runInAction, reaction, action } from "mobx";
-import { TimeDimensionModel } from "./TimeDimensionModel";
+import { observable, runInAction, action } from "mobx";
 import { GameWorldModel } from "./GameWorld";
+
 export class SoulModel extends RootModel {
-	constructor(x: number, y: number, id: string,
-		timeAware: TimeDimensionModel,
-		world: GameWorldModel
+	constructor(x: number, y: number, id: string
 	) {
 		super();
 
@@ -13,14 +11,8 @@ export class SoulModel extends RootModel {
 			this.positionX = x;
 			this.positionY = y;
 			this.id = id;
-			this.size = 3;
+			this.size = 1;
 		});
-
-		this.disposers.push(reaction(() => {
-			return timeAware.seconds
-		}, () => {
-			this.move(world);
-		}));
 	}
 
 	@observable
@@ -35,15 +27,18 @@ export class SoulModel extends RootModel {
 	@observable
 	size: number;
 
+	world: GameWorldModel;
+
 	@action
-	move(world: GameWorldModel) {
+	move() {
+		console.log("move from soul");
 		const direction = this.getRandomInt(1, 5);
 		if (direction == 1) { //top
-			if (this.positionY + 1 < world.worldHeight - this.size)
+			if (this.positionY + 1 < this.world.worldHeight - this.size)
 				this.positionY++;
 		}
 		else if (direction == 2) { //right
-			if (this.positionX + 1 < world.worldWidth - this.size)
+			if (this.positionX + 1 < this.world.worldWidth - this.size)
 				this.positionX++;
 		}
 		else if (direction == 3) { //bottom
@@ -54,6 +49,12 @@ export class SoulModel extends RootModel {
 			if (this.positionX - 1 > 1)
 				this.positionX--;
 		}
+	}
+
+	@action 
+	moveOn(positionX: number, positionY: number) {
+		this.positionX = positionX;
+		this.positionY = positionY;
 	}
 
 	getRandomInt(min, max) {
