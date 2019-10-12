@@ -2,6 +2,7 @@ import RootModel from "app/models/RootModel";
 import { observable, action, runInAction } from "mobx";
 import { HerbivoreModel } from "./Herbivore";
 import { SoulModel } from "./Soul";
+import { TimeDimensionModel } from "./TimeDimensionModel";
 
 export class GameWorldModel extends RootModel {
 	constructor(height: number, width: number) {
@@ -45,20 +46,4 @@ export class GameWorldModel extends RootModel {
 	}
 }
 
-export class TimeDimensionModel extends RootModel {
-	constructor() {
-		super();
-		runInAction(() => {
-			this.seconds = 0;
-		});
 
-		setInterval(() => {
-			runInAction(() => {
-				this.seconds++;
-			});
-		}, 1000);
-	}
-
-	@observable
-	seconds: number;
-}
