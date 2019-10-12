@@ -2,6 +2,8 @@ import * as React from 'react';
 import { GameWorldModel } from '../models/GameWorld';
 import HerbivoreComponent from './HerbivoreComponent';
 import { observer } from 'mobx-react';
+import { HerbivoreModel, CarnivoreModel } from '../models/Herbivore';
+import CarnivoreComponent from './CarnivoreComponent';
 
 export interface IGameWorldProps {
 }
@@ -14,7 +16,7 @@ export default class GameWorldComponent extends React.Component<IGameWorldProps>
 	constructor(props) {
 		super(props);
 
-		this.viewModel = new GameWorldModel(500, 500);
+		this.viewModel = new GameWorldModel(200, 200);
 		this.viewModel.ltbl();
 	}
 
@@ -27,9 +29,18 @@ export default class GameWorldComponent extends React.Component<IGameWorldProps>
 				border: "1px solid green"
 			}}>
 				{
-					this.viewModel.souls.map(vm =>
-						<HerbivoreComponent key={vm.id} viewModel={vm}>
-						</HerbivoreComponent>)
+					this.viewModel.souls.map(vm => {
+						let soul;
+						if (vm instanceof HerbivoreModel)
+							soul = (
+								<HerbivoreComponent viewModel={vm as HerbivoreModel}>
+								</HerbivoreComponent>)
+						else
+							soul = (
+								<CarnivoreComponent viewModel={vm as CarnivoreModel}></CarnivoreComponent>)
+
+						return <React.Fragment key={vm.id}>{soul}</React.Fragment>;
+					})
 				}
 			</div>
 		);

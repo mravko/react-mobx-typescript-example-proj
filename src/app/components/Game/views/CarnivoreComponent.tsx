@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { HerbivoreModel } from '../models/Herbivore';
+import { CarnivoreModel } from '../models/Herbivore';
 import { observer } from 'mobx-react';
 
-export interface IHerbivoreComponentProps {
-	viewModel: HerbivoreModel
+export interface ICarnivoreComponentProps {
+	viewModel: CarnivoreModel
 }
 
 @observer
-export default class HerbivoreComponent extends React.Component<IHerbivoreComponentProps> {
+export default class CarnivoreComponent extends React.Component<ICarnivoreComponentProps> {
   public render() {
 	return (
 	  <div style={{
@@ -15,7 +15,7 @@ export default class HerbivoreComponent extends React.Component<IHerbivoreCompon
 		top: this.props.viewModel.positionY,
 		left: this.props.viewModel.positionX,
 		height: this.props.viewModel.size, width: this.props.viewModel.size, 
-		backgroundColor: "green"}}>
+		backgroundColor: "red"}}>
 	  </div>
 	);
   }
