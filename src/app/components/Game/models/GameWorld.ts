@@ -1,6 +1,7 @@
 import RootModel from "app/models/RootModel";
 import { observable, action, runInAction, extendObservable } from "mobx";
-import { HerbivoreModel, CarnivoreModel } from "./Herbivore";
+import { HerbivoreModel } from "./Herbivore";
+import { CarnivoreModel } from "./CarnivoreModel";
 import { SoulModel } from "./Soul";
 import { TimeDimensionModel } from "./TimeDimensionModel";
 

@@ -2,7 +2,8 @@ import * as React from 'react';
 import { GameWorldModel } from '../models/GameWorld';
 import HerbivoreComponent from './HerbivoreComponent';
 import { observer } from 'mobx-react';
-import { HerbivoreModel, CarnivoreModel } from '../models/Herbivore';
+import { HerbivoreModel } from '../models/Herbivore';
+import { CarnivoreModel } from "../models/CarnivoreModel";
 import CarnivoreComponent from './CarnivoreComponent';
 
 export interface IGameWorldProps {

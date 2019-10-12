@@ -16,11 +16,11 @@ export class SoulModel extends RootModel {
 			this.size = 3;
 		});
 
-		reaction(() => {
+		this.disposers.push(reaction(() => {
 			return timeAware.seconds
 		}, () => {
 			this.move(world);
-		});
+		}));
 	}
 
 	@observable

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CarnivoreModel } from '../models/Herbivore';
+import { CarnivoreModel } from "../models/CarnivoreModel";
 import { observer } from 'mobx-react';
 
 export interface ICarnivoreComponentProps {
