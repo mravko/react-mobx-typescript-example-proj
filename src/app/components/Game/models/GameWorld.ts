@@ -43,12 +43,12 @@ export class GameWorldModel extends RootModel {
 
 	@action
 	ltbl() {
-		for (let index = 0; index < 100; index++) {
+		for (let index = 0; index < 10; index++) {
 			const p = this.randomPosition;
 			this.souls.push(new HerbivoreModel(p.x, p.y, `h${index}`, this.timeDimension, this));
 		}
 
-		for (let index = 0; index < 20; index++) {
+		for (let index = 0; index < 5; index++) {
 			const p = this.randomPosition;
 			const c = new CarnivoreModel(p.x, p.y, `c${index}`, this.timeDimension, this);
 

@@ -16,7 +16,7 @@ export default class GameWorldComponent extends React.Component<IGameWorldProps>
 	constructor(props) {
 		super(props);
 
-		this.viewModel = new GameWorldModel(200, 200);
+		this.viewModel = new GameWorldModel(10, 10);
 		this.viewModel.ltbl();
 	}
 
@@ -30,17 +30,14 @@ export default class GameWorldComponent extends React.Component<IGameWorldProps>
 			}}>
 				{
 					this.viewModel.souls.map(vm => {
-						let soul;
 						if (vm instanceof HerbivoreModel)
-							soul = (
-								<HerbivoreComponent viewModel={vm as HerbivoreModel}>
+							return (
+								<HerbivoreComponent key={vm.id} viewModel={vm as HerbivoreModel}>
 								</HerbivoreComponent>)
 						else
-							soul = (
-								<CarnivoreComponent viewModel={vm as CarnivoreModel}></CarnivoreComponent>)
-
-						return <React.Fragment key={vm.id}>{soul}</React.Fragment>;
+							return (<CarnivoreComponent key={vm.id} viewModel={vm as CarnivoreModel}></CarnivoreComponent>)
 					})
+
 				}
 			</div>
 		);
