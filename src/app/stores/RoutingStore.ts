@@ -14,7 +14,7 @@ export default class RoutingStore extends RouterStore {
   }
 
   setQueryValue(key: string, value: any) {
-    var q = queryString.parse(this.queryStringValue, { parseNumbers: true });
+    var q = queryString.parse(this.queryStringValue);
     q[key] = value;
     this.history.push({
       search: `?${queryString.stringify(q)}`
@@ -22,7 +22,7 @@ export default class RoutingStore extends RouterStore {
   }
 
   queryValue(key: string): string {
-    var q = queryString.parse(this.queryStringValue, { parseNumbers: true });
+    var q = queryString.parse(this.queryStringValue);
     return q[key];
   }
 }

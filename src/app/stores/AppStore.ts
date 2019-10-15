@@ -32,7 +32,9 @@ export class AppStore {
   }
 }
 
-console.log("creating appstore instance");
 const rs = new RoutingStore();
 const as = new AppStore(rs);
+
+console.log("creating appstore instance");
+
 export default as;

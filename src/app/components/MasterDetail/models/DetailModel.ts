@@ -1,5 +1,6 @@
 import { observable, reaction, action, computed, toJS } from "mobx";
 import RootModel from "app/models/RootModel";
+import appStore from "../../../stores/AppStore"
 
 export class DetailModel extends RootModel {
   constructor(data) {
@@ -33,6 +34,12 @@ export class DetailModel extends RootModel {
   @computed
   get keys(): string[] {
     return Object.keys(this.data);
+  }
+
+  @computed
+  get showPopup() {
+    debugger;
+    return appStore.routingStore.queryValue("popup") === "1";
   }
 
   @action

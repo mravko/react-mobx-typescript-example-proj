@@ -24,6 +24,11 @@ const DetailView: React.FunctionComponent<IDetailViewProps> = observer(
             </div>
           </div>
         ))}
+        {props.model.showPopup ?
+          <div style={{ position: "fixed", top: 0, width: 200, height: 200, backgroundColor: "red" }}>
+            popup
+        </div>
+          : null}
       </div>
     );
   }
