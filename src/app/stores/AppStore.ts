@@ -1,20 +1,11 @@
 import UserStore from "./UserStore";
-import { observable, reaction, action } from "mobx";
+import { observable, action } from "mobx";
 import RoutingStore from "./RoutingStore";
 
 export class AppStore {
   constructor(routingStore: RoutingStore) {
     this.userStore = new UserStore(this);
     this.routingStore = routingStore;
-
-    reaction(
-      () => {
-        return this.pageTitle;
-      },
-      val => {
-        document.title = val;
-      }
-    );
   }
 
   userStore: UserStore;
@@ -28,7 +19,7 @@ export class AppStore {
 
   @action
   setPageTitle(title: string) {
-    this.pageTitle = title;
+    document.title = title;
   }
 }
 

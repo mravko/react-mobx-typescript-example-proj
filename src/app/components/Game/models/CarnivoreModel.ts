@@ -15,7 +15,7 @@ export class CarnivoreModel extends SoulModel {
     super(x, y, id);
     this.world = world;
 
-    this.disposers.push(
+    this.reactions.push(
       reaction(
         () => {
           return timeAware.seconds;

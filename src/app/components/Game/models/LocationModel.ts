@@ -9,7 +9,7 @@ export class LocationModel extends RootModel {
     super();
     this.id = id;
     this.herbivoreSmell = 0;
-    this.disposers.push(
+    this.reactions.push(
       reaction(
         () => {
           return timeAware.seconds;

@@ -1,6 +1,6 @@
 import { observable, reaction, action, computed, toJS } from "mobx";
 import RootModel from "app/models/RootModel";
-import appStore from "../../../stores/AppStore"
+import appStore from "../../../stores/AppStore";
 
 export class DetailModel extends RootModel {
   constructor(data) {

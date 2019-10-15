@@ -14,7 +14,7 @@ export class HerbivoreModel extends SoulModel {
     super(x, y, id);
     this.world = world;
 
-    this.disposers.push(
+    this.reactions.push(
       reaction(
         () => {
           return timeAware.seconds;
