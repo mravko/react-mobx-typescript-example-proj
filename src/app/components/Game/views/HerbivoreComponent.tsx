@@ -10,6 +10,10 @@ export interface IHerbivoreComponentProps {
 export default class HerbivoreComponent extends React.Component<
   IHerbivoreComponentProps
 > {
+  componentWillUnmount() {
+    this.props.viewModel.disposeReactions();
+  }
+
   public render() {
     return (
       <div

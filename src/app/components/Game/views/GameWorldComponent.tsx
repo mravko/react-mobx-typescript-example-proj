@@ -21,6 +21,10 @@ export default class GameWorldComponent extends React.Component<
     this.viewModel.ltbl();
   }
 
+  componentWillUnmount() {
+    this.viewModel.disposeReactions();
+  }
+
   public render() {
     return (
       <div

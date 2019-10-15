@@ -10,6 +10,10 @@ export interface ICarnivoreComponentProps {
 export default class CarnivoreComponent extends React.Component<
   ICarnivoreComponentProps
 > {
+  componentWillUnmount() {
+    this.props.viewModel.disposeReactions();
+  }
+
   public render() {
     return (
       <div
