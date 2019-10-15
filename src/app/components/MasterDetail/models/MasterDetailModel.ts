@@ -16,7 +16,8 @@ export class MasterDetailModel extends RootModel {
 			reaction(() => {
 				return this.masterModel.activeRow;
 			}, () => {
-				this.routeToDetail(this.masterModel.activeRow)
+				this.routeToDetail(this.masterModel.activeRow);
+				StoreProvider.stores.appStore.pageTitle = this.masterModel.activeRow["name"];
 			})
 		);
 
