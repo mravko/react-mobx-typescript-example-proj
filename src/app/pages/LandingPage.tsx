@@ -1,15 +1,14 @@
 import * as React from 'react';
-import AppStore from 'app/stores/AppStore';
 import { useEffect } from 'react';
-import StoreProvider from 'app/stores/StoreProvider';
+import apstore from 'app/stores/AppStore';
+
 
 interface ILandingPageProps {
-  appStore?: AppStore
 }
 
 const LandingPage: React.FunctionComponent<ILandingPageProps> = () => {
   useEffect(() => {
-    StoreProvider.stores.appStore.setPageTitle("Landing page")
+    apstore.setPageTitle("Landing page")
   }, []);
   
   return (

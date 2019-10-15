@@ -1,7 +1,7 @@
 import { observable, reaction, action, runInAction } from "mobx";
 import { DetailModel } from "./DetailModel";
 import { GridModel } from "app/components/Grid/models/GridModel";
-import StoreProvider from "app/stores/StoreProvider";
+import appStore from "app/stores/AppStore";
 import RootModel from "app/models/RootModel";
 
 export class MasterDetailModel extends RootModel {
@@ -17,13 +17,13 @@ export class MasterDetailModel extends RootModel {
 				return this.masterModel.activeRow;
 			}, () => {
 				this.routeToDetail(this.masterModel.activeRow);
-				StoreProvider.stores.appStore.pageTitle = this.masterModel.activeRow["name"];
+				appStore.pageTitle = this.masterModel.activeRow["name"];
 			})
 		);
 
-		this.reactions.push(reaction(() => StoreProvider.stores.appStore.routingStore.queryStringValue,
+		this.reactions.push(reaction(() => appStore.routingStore.queryStringValue,
 			() => {
-				const detailsId = StoreProvider.stores.appStore.routingStore.queryValue("detailsId");
+				const detailsId = appStore.routingStore.queryValue("detailsId");
 				this.openDetailFromId(parseInt(detailsId));
 			}, { fireImmediately: true })
 		);
@@ -50,7 +50,7 @@ export class MasterDetailModel extends RootModel {
 
 	@action
 	routeToDetailId(id) {
-		StoreProvider.stores.appStore.routingStore.setQueryValue("detailsId", id);
+		appStore.routingStore.setQueryValue("detailsId", id);
 	}
 
 	@action

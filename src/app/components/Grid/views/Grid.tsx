@@ -1,13 +1,11 @@
 import * as React from 'react';
 import AddRow from './AddRow';
 import { GridModel } from '../models/GridModel';
-import { observer, inject } from 'mobx-react';
+import { observer } from 'mobx-react';
 import styled from 'styled-components';
-import AppStore from 'app/stores/AppStore';
 
 export class GridProps {
 	model: GridModel
-	appStore?: AppStore
 }
 
 const Tr = styled.tr`
@@ -17,7 +15,7 @@ const Tr = styled.tr`
 	}
 `;
 
-const Grid: React.FunctionComponent<GridProps> = inject("appStore")(observer((props) => {
+const Grid: React.FunctionComponent<GridProps> = observer((props) => {
 	if (!props.model.hasData)
 		return <div>No data</div>;
 
@@ -40,6 +38,6 @@ const Grid: React.FunctionComponent<GridProps> = inject("appStore")(observer((pr
 			</table>
 			<AddRow model={props.model}></AddRow>
 		</React.Fragment>);
-}));
+});
 
 export default Grid;

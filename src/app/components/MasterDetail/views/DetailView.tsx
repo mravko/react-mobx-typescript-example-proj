@@ -1,14 +1,12 @@
 import * as React from 'react';
 import { DetailModel } from "../models/DetailModel";
-import { observer, inject } from 'mobx-react';
-import AppStore from 'app/stores/AppStore';
+import { observer } from 'mobx-react';
 
 interface IDetailViewProps {
-	model: DetailModel,
-	appStore?: AppStore
+	model: DetailModel
 }
 
-const DetailView: React.FunctionComponent<IDetailViewProps> = inject("appStore")(observer((props) => {
+const DetailView: React.FunctionComponent<IDetailViewProps> = (observer((props) => {
 	return (
 		<div>
 			{props.model.keys.map(k =>
@@ -20,7 +18,6 @@ const DetailView: React.FunctionComponent<IDetailViewProps> = inject("appStore")
 						<input type="text" value={props.model.data[k]} onChange={(e) => {
 							props.model.setDataValue(k, e.target.value);
 						}} />
-
 					</div>
 				</div>)}
 		</div>);

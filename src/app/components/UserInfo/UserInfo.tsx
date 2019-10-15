@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { observer } from 'mobx-react';
 import styled from 'styled-components';
-import StoreProvider from 'app/stores/StoreProvider';
+import appStore from 'app/stores/AppStore';
 
 const UserInfoWrapper = styled.div`
 	display: flex;
@@ -18,17 +18,17 @@ export default class UserInfo extends React.Component<IUserInfoProps> {
 		super(props);
 	}
 	loginUser = () => {
-		StoreProvider.stores.appStore.userStore.logInUser();
+		appStore.userStore.logInUser();
 	};
 	logoutUser = () => {
-		StoreProvider.stores.appStore.userStore.logout();
+		appStore.userStore.logout();
 	};
 	public render() {
 		return (
 			<UserInfoWrapper>
-				{StoreProvider.stores.appStore.userStore.isUserLoggedIn ?
+				{appStore.userStore.isUserLoggedIn ?
 					<React.Fragment>
-						<div>{StoreProvider.stores.appStore.userStore.loggedInUser.userName}</div>
+						<div>{appStore.userStore.loggedInUser.userName}</div>
 						<button onClick={this.logoutUser}>Log out</button>
 					</React.Fragment> :
 					<React.Fragment>

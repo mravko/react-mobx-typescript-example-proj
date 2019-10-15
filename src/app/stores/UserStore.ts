@@ -1,11 +1,11 @@
-import AppStore from "./AppStore";
+import { AppStore } from "./AppStore";
 import { computed, action, observable } from "mobx";
 import UserModel from "app/models/UserModel";
 
 export default class UserStore {
 	@observable
 	loggedInUser: UserModel
-	
+
 	appStore: AppStore;
 
 	constructor(appStore: AppStore) {
@@ -13,7 +13,7 @@ export default class UserStore {
 	}
 
 	@computed
-	get isUserLoggedIn() : boolean {
+	get isUserLoggedIn(): boolean {
 		return !!this.loggedInUser;
 	}
 

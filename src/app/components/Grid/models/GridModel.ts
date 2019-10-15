@@ -1,5 +1,5 @@
 import { observable, computed, action, runInAction } from 'mobx';
-import StoreProvider from 'app/stores/StoreProvider';
+import appStore from 'app/stores/AppStore';
 
 export class GridModel {
 	constructor() {
@@ -18,7 +18,7 @@ export class GridModel {
 
 	@computed
 	get rows(): any[] {
-		if (!StoreProvider.stores.appStore.userStore.isUserLoggedIn)
+		if (!appStore.userStore.isUserLoggedIn)
 			return this.data.filter((r) => r["_private"] === false);
 		return this.data;
 	}
