@@ -13,6 +13,9 @@ export default class ForecastComponent extends React.Component<
   constructor(props) {
     super(props);
     this.viewModel = new ForecastModel();
+  }
+
+  componentDidMount() {
     this.viewModel.getResults();
   }
 
