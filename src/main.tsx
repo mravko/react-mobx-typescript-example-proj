@@ -11,6 +11,7 @@ import { syncHistoryWithStore } from "mobx-react-router";
 import appStore from "app/stores/AppStore";
 import GamePage from "app/pages/GamePage";
 import Drawing from "app/pages/DrawingPage";
+import ForecastPage from "app/pages/Forecast";
 
 configure({ enforceActions: "always" });
 
@@ -27,6 +28,7 @@ const App = ({ history }) => (
       <Route path="/master" component={MasterDetailPage} />
       <Route path="/game" component={GamePage} />
       <Route path="/drawing" component={Drawing} />
+      <Route path="/forecast" component={ForecastPage} />
     </Router>
   </React.Fragment>
 );

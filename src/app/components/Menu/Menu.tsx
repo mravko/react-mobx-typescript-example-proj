@@ -32,6 +32,9 @@ const Menu: React.FunctionComponent<IMenuProps> = () => {
       <MenuItemWrapper>
         <Link to="/drawing">Drawing</Link>
       </MenuItemWrapper>
+      <MenuItemWrapper>
+        <Link to="/forecast">Forecast</Link>
+      </MenuItemWrapper>
       <UserInfo></UserInfo>
     </MenuWrapper>
   );
