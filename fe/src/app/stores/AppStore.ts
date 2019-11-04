@@ -3,9 +3,11 @@ import { observable, action } from "mobx";
 import RoutingStore from "./RoutingStore";
 
 export class AppStore {
-  constructor(routingStore: RoutingStore) {
+  constructor() {
     this.userStore = new UserStore(this);
-    this.routingStore = routingStore;
+    this.routingStore = new RoutingStore();
+
+    console.log("creating appstore instance");
   }
 
   userStore: UserStore;
@@ -23,9 +25,6 @@ export class AppStore {
   }
 }
 
-const rs = new RoutingStore();
-const as = new AppStore(rs);
+const instance = new AppStore();
 
-console.log("creating appstore instance");
-
-export default as;
+export default instance;
