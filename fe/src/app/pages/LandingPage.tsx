@@ -9,11 +9,7 @@ const LandingPage: React.FunctionComponent<ILandingPageProps> = () => {
     apstore.setPageTitle("Landing page");
   }, []);
 
-  return (
-    <React.Fragment>
-      <div>Hello, this is the landing page</div>
-    </React.Fragment>
-  );
+  return <div>Hello, this is the landing page</div>;
 };
 
 export default LandingPage;
