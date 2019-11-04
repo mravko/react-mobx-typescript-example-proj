@@ -1,4 +1,5 @@
-import { StepperModel, StepModel } from "./StepperModel";
+import { StepperModel } from "./StepperModel";
+import { StepModel } from "./StepModel";
 
 describe("stepper model tests", () => {
   let stepperModel: StepperModel;

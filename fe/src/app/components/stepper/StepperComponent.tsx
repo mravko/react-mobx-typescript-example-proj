@@ -1,7 +1,9 @@
 import * as React from "react";
-import { StepperModel, StepModel } from "./StepperModel";
+import { StepperModel } from "./StepperModel";
 import { observer } from "mobx-react";
 import { runInAction } from "mobx";
+import { Step1Model } from "./Step1";
+import { Step2Model } from "./Step2";
 
 export interface IStepperComponentProps {}
 
@@ -13,13 +15,10 @@ export default class StepperComponent extends React.Component<
     super(props);
 
     runInAction(() => {
-      let step1 = new StepModel();
-      step1.title = "Step 1";
-      let step2 = new StepModel();
-      step2.title = "Step 2";
-      let step3 = new StepModel();
-      step3.title = "Step 3";
-      this.viewModel = new StepperModel([step1, step2, step3]);
+      let step1 = new Step1Model();
+      let step2 = new Step2Model();
+
+      this.viewModel = new StepperModel([step1, step2]);
     });
   }
 
@@ -29,6 +28,8 @@ export default class StepperComponent extends React.Component<
     return (
       <div>
         <span>{this.viewModel.currentStepModel.title}</span>
+        <hr></hr>
+        {this.viewModel.currentStepModel.component}
         <hr></hr>
         <button onClick={this.viewModel.prevStep}>Prev</button>
         <button onClick={this.viewModel.nextStep}>Next</button>
