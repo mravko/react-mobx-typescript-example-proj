@@ -4,15 +4,8 @@ import { configure } from "mobx";
 import { createBrowserHistory } from "history";
 import { Router, Route } from "react-router";
 import LandingPage from "./app/pages/LandingPage";
-import MasterDetailPage from "app/pages/MasterDetailPage";
-import GridOnlyPage from "app/pages/GridOnlyPage";
-import Menu from "app/components/Menu/Menu";
 import { syncHistoryWithStore } from "mobx-react-router";
 import appStore from "app/stores/AppStore";
-import GamePage from "app/pages/GamePage";
-import Drawing from "app/pages/DrawingPage";
-import ForecastPage from "app/pages/Forecast";
-
 configure({ enforceActions: "always" });
 
 const browserHistory = createBrowserHistory();
@@ -20,17 +13,11 @@ const history = syncHistoryWithStore(browserHistory, appStore.routingStore);
 
 // render react DOM
 const App = ({ history }) => (
-  <React.Fragment>
+  <>
     <Router history={history}>
-      <Menu></Menu>
       <Route exact path="/" component={LandingPage} />
-      <Route path="/grid" component={GridOnlyPage} />
-      <Route path="/master" component={MasterDetailPage} />
-      <Route path="/game" component={GamePage} />
-      <Route path="/drawing" component={Drawing} />
-      <Route path="/forecast" component={ForecastPage} />
     </Router>
-  </React.Fragment>
+  </>
 );
 
 // render react DOM
