@@ -36,6 +36,7 @@ export default class StepperComponent extends React.Component<
         <hr></hr>
         <button onClick={this.viewModel.prevStep}>Prev</button>
         <button onClick={this.viewModel.nextStep}>Next</button>
+        {!this.viewModel.currentStepModel.isValid() ? "Invalid form" : null}
       </div>
     );
   }
