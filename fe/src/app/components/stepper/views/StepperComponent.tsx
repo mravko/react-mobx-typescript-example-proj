@@ -7,6 +7,8 @@ import { Step2Model } from "../models/Step2Model";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import { Step3Model } from "../models/Step3Model";
 
 export interface IStepperComponentProps {}
 
@@ -22,8 +24,12 @@ export default class StepperComponent extends React.Component<
 
       let step1 = new Step1Model(this.viewModel);
       let step2 = new Step2Model(this.viewModel);
+      let step3 = new Step3Model(this.viewModel);
 
-      this.viewModel.addStep(step1).addStep(step2);
+      this.viewModel
+        .addStep(step1)
+        .addStep(step2)
+        .addStep(step3);
     });
   }
 
@@ -36,7 +42,13 @@ export default class StepperComponent extends React.Component<
         <Typography variant="h5" component="h3">
           {this.viewModel.currentStepModel.title}
         </Typography>
-        <hr></hr>
+        <div style={{ margin: "10px 0" }}>
+          <LinearProgress
+            variant="buffer"
+            value={this.viewModel.currentStepModel.process}
+            valueBuffer={100}
+          />
+        </div>
         <Component viewModel={this.viewModel.currentStepModel} />
         <div
           style={{

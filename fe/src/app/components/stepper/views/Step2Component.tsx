@@ -24,10 +24,15 @@ export class Step2Component extends React.Component<Step2ComponentProps> {
     this.firstInputRef.current.focus();
   }
 
+  onSubmit = e => {
+    e.preventDefault();
+    this.viewModel.stepperContainer.nextStep();
+  };
+
   public render() {
     const buttonStyle = { width: 400, margin: 10 };
     return (
-      <div>
+      <form onSubmit={this.onSubmit}>
         <TextField
           style={buttonStyle}
           inputRef={this.firstInputRef}
@@ -40,7 +45,7 @@ export class Step2Component extends React.Component<Step2ComponentProps> {
           margin="normal"
         />
         <br />
-      </div>
+      </form>
     );
   }
 }

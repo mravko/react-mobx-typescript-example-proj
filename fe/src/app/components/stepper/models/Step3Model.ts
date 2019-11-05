@@ -1,13 +1,13 @@
 import { BaseStepModel } from "./BaseStepModel";
 import { runInAction, observable } from "mobx";
-import { Step1Component } from "../views/Step1Component";
+import { Step3Component } from "../views/Step3Component";
 import { StepperModel } from "./StepperModel";
 
-export class Step1Model extends BaseStepModel {
+export class Step3Model extends BaseStepModel {
   @observable
-  websiteName: string;
+  databaseName: string;
   @observable
-  websiteUrl: string;
+  connectionString: string;
   @observable
   adminUserEmail: string;
   @observable
@@ -16,20 +16,20 @@ export class Step1Model extends BaseStepModel {
   constructor(stepperContainer: StepperModel) {
     super(stepperContainer);
     runInAction(() => {
-      this.title = "Step 1 - Website info";
-      this.component = Step1Component;
-      this.websiteName = "";
-      this.websiteUrl = "";
+      this.title = "Step 3 - Database";
+      this.component = Step3Component;
+      this.databaseName = "";
+      this.connectionString = "";
       this.adminUserEmail = "";
       this.adminUserPassword = "";
-      this.process = 30;
+      this.process = 100;
     });
   }
 
   isValid = (): boolean => {
     if (
-      this.websiteName.length !== 0 &&
-      this.websiteUrl.length !== 0 &&
+      this.connectionString.length !== 0 &&
+      this.databaseName.length !== 0 &&
       this.adminUserEmail.length !== 0 &&
       this.adminUserPassword.length !== 0
     )

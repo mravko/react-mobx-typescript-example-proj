@@ -8,6 +8,9 @@ export class BaseStepModel {
   }
 
   @observable
+  process;
+
+  @observable
   title: string;
 
   component: React.ComponentClass;

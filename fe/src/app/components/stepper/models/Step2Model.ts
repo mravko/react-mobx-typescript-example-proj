@@ -9,9 +9,10 @@ export class Step2Model extends BaseStepModel {
   constructor(stepperContainer: StepperModel) {
     super(stepperContainer);
     runInAction(() => {
-      this.title = "Step 2";
+      this.title = "Step 2 - Logo";
       this.component = Step2Component;
       this.logoPath = "";
+      this.process = 60;
     });
   }
 
