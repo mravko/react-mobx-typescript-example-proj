@@ -11,6 +11,13 @@ export class Step2Model extends BaseStepModel {
     runInAction(() => {
       this.title = "Step 2";
       this.component = Step2Component;
+      this.logoPath = "";
     });
   }
+
+  isValid = (): boolean => {
+    if (this.logoPath.length !== 0) return super.isValid();
+
+    return false;
+  };
 }

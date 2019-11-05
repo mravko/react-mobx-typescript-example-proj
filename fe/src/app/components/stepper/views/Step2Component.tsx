@@ -31,6 +31,8 @@ export class Step2Component extends React.Component<Step2ComponentProps> {
           ref={this.firstInputRef}
           type="text"
           value={this.viewModel.logoPath}
+          name="logoPath"
+          onChange={this.viewModel.changeValue}
         />
         <br />
       </div>

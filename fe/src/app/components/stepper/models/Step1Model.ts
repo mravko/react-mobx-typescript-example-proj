@@ -18,6 +18,22 @@ export class Step1Model extends BaseStepModel {
     runInAction(() => {
       this.title = "Step 1";
       this.component = Step1Component;
+      this.websiteName = "";
+      this.websiteUrl = "";
+      this.adminUserEmail = "";
+      this.adminUserPassword = "";
     });
   }
+
+  isValid = (): boolean => {
+    if (
+      this.websiteName.length !== 0 &&
+      this.websiteUrl.length !== 0 &&
+      this.adminUserEmail.length !== 0 &&
+      this.adminUserPassword.length !== 0
+    )
+      return super.isValid();
+
+    return false;
+  };
 }

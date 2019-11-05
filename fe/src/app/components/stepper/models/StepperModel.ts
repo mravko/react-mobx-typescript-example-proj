@@ -26,21 +26,20 @@ export class StepperModel extends RootModel {
 
   @action
   nextStep = () => {
-    if (this.currentStepIndex + 1 < this.stepsArray.length) {
-      if (this.currentStepModel.isValid) {
-        this.currentStepIndex++;
-        AppStore.setPageTitle(this.currentStepModel.title);
-      }
+    if (
+      this.currentStepIndex + 1 < this.stepsArray.length &&
+      this.currentStepModel.isValid()
+    ) {
+      this.currentStepIndex++;
+      AppStore.setPageTitle(this.currentStepModel.title);
     }
   };
 
   @action
   prevStep = () => {
     if (this.currentStepIndex - 1 >= 0) {
-      if (this.currentStepModel.isValid) {
-        this.currentStepIndex--;
-        AppStore.setPageTitle(this.currentStepModel.title);
-      }
+      this.currentStepIndex--;
+      AppStore.setPageTitle(this.currentStepModel.title);
     }
   };
 

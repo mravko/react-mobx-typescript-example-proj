@@ -1,12 +1,12 @@
-import { observable, computed, action } from "mobx";
+import { observable, action } from "mobx";
 import * as React from "react";
 import { StepperModel } from "./StepperModel";
 
 export class BaseStepModel {
-  @computed
-  get isValid(): boolean {
+  isValid(): boolean {
     return true;
   }
+
   @observable
   title: string;
 
