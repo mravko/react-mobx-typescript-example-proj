@@ -39,7 +39,17 @@ namespace api.Controllers
 		public IActionResult Get()
 		{
 			var toReturn = (List<SiteModel>)memoryCache.Get("SiteModel");
-			return Ok(toReturn);
+			return Ok(toReturn.Select(x => new { x.Id, x.WebsiteName, x.WebsiteUrl, x.DatabaseName, x.ConnectionString }));
+		}
+
+		[HttpPost]
+		public IActionResult Post(SiteModel model)
+		{
+			var toReturn = (List<SiteModel>)memoryCache.Get("SiteModel");
+			toReturn.Add(model);
+			memoryCache.Set("SiteModel", toReturn);
+
+			return Ok();
 		}
 	}
 

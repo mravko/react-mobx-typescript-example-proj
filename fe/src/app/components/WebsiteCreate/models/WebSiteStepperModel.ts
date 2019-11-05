@@ -47,4 +47,18 @@ export class WebSiteStepperModel extends RootModel {
   get currentStepModel(): BaseStepModel {
     return this.stepsArray[this.currentStepIndex];
   }
+
+  @computed
+  get isLastStep(): boolean {
+    return this.currentStepIndex == this.stepsArray.length - 1;
+  }
+
+  @action
+  saveSteps = async () => {
+    var obj = {};
+    for (const step of this.stepsArray) {
+      Object.assign(obj, step);
+    }
+    debugger;
+  };
 }

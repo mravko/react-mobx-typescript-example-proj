@@ -65,15 +65,27 @@ export default class StepperComponent extends React.Component<
           >
             Prev
           </Button>
-          <Button
-            style={{ width: "50%" }}
-            variant="contained"
-            color="primary"
-            disabled={!this.viewModel.currentStepModel.isValid()}
-            onClick={this.viewModel.nextStep}
-          >
-            Next
-          </Button>
+          {!this.viewModel.isLastStep ? (
+            <Button
+              style={{ width: "50%" }}
+              variant="contained"
+              color="primary"
+              disabled={!this.viewModel.currentStepModel.isValid()}
+              onClick={this.viewModel.nextStep}
+            >
+              Next
+            </Button>
+          ) : (
+            <Button
+              style={{ width: "50%" }}
+              variant="contained"
+              color="primary"
+              disabled={!this.viewModel.currentStepModel.isValid()}
+              onClick={this.viewModel.saveSteps}
+            >
+              Save
+            </Button>
+          )}
         </div>
       </>
     );
