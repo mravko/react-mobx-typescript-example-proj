@@ -1,6 +1,7 @@
 import * as React from "react";
 import { observer } from "mobx-react";
 import { Step2Model } from "../models/Step2Model";
+import TextField from "@material-ui/core/TextField";
 
 interface Step2ComponentProps {
   viewModel: Step2Model;
@@ -24,15 +25,19 @@ export class Step2Component extends React.Component<Step2ComponentProps> {
   }
 
   public render() {
+    const buttonStyle = { width: 400, margin: 10 };
     return (
       <div>
-        <label>Choose logo</label> <br />
-        <input
-          ref={this.firstInputRef}
+        <TextField
+          style={buttonStyle}
+          inputRef={this.firstInputRef}
           type="text"
           value={this.viewModel.logoPath}
           name="logoPath"
           onChange={this.viewModel.changeValue}
+          required
+          label="Logo path"
+          margin="normal"
         />
         <br />
       </div>

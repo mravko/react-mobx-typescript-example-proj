@@ -4,6 +4,9 @@ import { observer } from "mobx-react";
 import { runInAction } from "mobx";
 import { Step1Model } from "../models/Step1Model";
 import { Step2Model } from "../models/Step2Model";
+import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 
 export interface IStepperComponentProps {}
 
@@ -29,15 +32,39 @@ export default class StepperComponent extends React.Component<
   public render() {
     const Component: any = this.viewModel.currentStepModel.component;
     return (
-      <div>
-        <span>{this.viewModel.currentStepModel.title}</span>
+      <Paper style={{ width: 500, padding: 20 }}>
+        <Typography variant="h5" component="h3">
+          {this.viewModel.currentStepModel.title}
+        </Typography>
         <hr></hr>
         <Component viewModel={this.viewModel.currentStepModel} />
-        <hr></hr>
-        <button onClick={this.viewModel.prevStep}>Prev</button>
-        <button onClick={this.viewModel.nextStep}>Next</button>
-        {!this.viewModel.currentStepModel.isValid() ? "Invalid form" : null}
-      </div>
+        <div
+          style={{
+            margin: "0 auto",
+            width: 300,
+            marginTop: 20,
+            marginBottom: 10
+          }}
+        >
+          <Button
+            style={{ width: "50%" }}
+            variant="contained"
+            color="secondary"
+            onClick={this.viewModel.prevStep}
+          >
+            Prev
+          </Button>
+          <Button
+            style={{ width: "50%" }}
+            variant="contained"
+            color="primary"
+            disabled={!this.viewModel.currentStepModel.isValid()}
+            onClick={this.viewModel.nextStep}
+          >
+            Next
+          </Button>
+        </div>
+      </Paper>
     );
   }
 }

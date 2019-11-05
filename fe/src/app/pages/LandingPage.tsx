@@ -12,7 +12,6 @@ const LandingPage: React.FunctionComponent<ILandingPageProps> = () => {
 
   return (
     <div>
-      Hello, this is the landing page
       <StepperComponent></StepperComponent>
     </div>
   );
