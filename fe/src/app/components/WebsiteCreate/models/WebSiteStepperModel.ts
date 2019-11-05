@@ -3,7 +3,7 @@ import { observable, action, computed, runInAction } from "mobx";
 import AppStore from "app/stores/AppStore";
 import { BaseStepModel } from "./BaseStepModel";
 
-export class StepperModel extends RootModel {
+export class WebSiteStepperModel extends RootModel {
   @observable
   currentStepIndex: number;
 

@@ -1,6 +1,6 @@
 import { observable, action } from "mobx";
 import * as React from "react";
-import { StepperModel } from "./StepperModel";
+import { WebSiteStepperModel } from "./WebSiteStepperModel";
 
 export class BaseStepModel {
   isValid(): boolean {
@@ -20,9 +20,9 @@ export class BaseStepModel {
     this[e.target.name] = e.target.value;
   };
 
-  stepperContainer: StepperModel;
+  stepperContainer: WebSiteStepperModel;
 
-  constructor(stepperContainer: StepperModel) {
+  constructor(stepperContainer: WebSiteStepperModel) {
     this.stepperContainer = stepperContainer;
   }
 }

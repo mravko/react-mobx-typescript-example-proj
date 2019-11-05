@@ -26,6 +26,7 @@ namespace api
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddControllers();
+			services.AddMemoryCache();
 
 			services.AddCors();
 		}

@@ -58,8 +58,8 @@ export class Step3Component extends React.Component<Step3ComponentProps> {
         <TextField
           style={buttonStyle}
           type="email"
-          name="adminUserEmail"
-          value={this.viewModel.adminUserEmail}
+          name="dbAdminUserEmail"
+          value={this.viewModel.dbAdminUserEmail}
           onChange={this.viewModel.changeValue}
           required
           label="Admin email"
@@ -69,8 +69,8 @@ export class Step3Component extends React.Component<Step3ComponentProps> {
         <TextField
           style={buttonStyle}
           type="password"
-          name="adminUserPassword"
-          value={this.viewModel.adminUserPassword}
+          name="dbAdminUserPassword"
+          value={this.viewModel.dbAdminUserPassword}
           onChange={this.viewModel.changeValue}
           required
           label="Admin password"

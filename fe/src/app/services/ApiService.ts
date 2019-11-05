@@ -8,7 +8,7 @@ export default class ApiService {
     timeout: 25000
   });
 
-  static async GetForecastData() {
-    return this.client.get("/weatherforecast");
+  static async GetWebsites() {
+    return this.client.get("/websites");
   }
 }

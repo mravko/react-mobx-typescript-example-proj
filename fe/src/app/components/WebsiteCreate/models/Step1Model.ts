@@ -1,7 +1,7 @@
 import { BaseStepModel } from "./BaseStepModel";
 import { runInAction, observable } from "mobx";
 import { Step1Component } from "../views/Step1Component";
-import { StepperModel } from "./StepperModel";
+import { WebSiteStepperModel } from "./WebSiteStepperModel";
 
 export class Step1Model extends BaseStepModel {
   @observable
@@ -13,7 +13,7 @@ export class Step1Model extends BaseStepModel {
   @observable
   adminUserPassword;
 
-  constructor(stepperContainer: StepperModel) {
+  constructor(stepperContainer: WebSiteStepperModel) {
     super(stepperContainer);
     runInAction(() => {
       this.title = "Step 1 - Website info";

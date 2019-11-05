@@ -1,7 +1,7 @@
 import { BaseStepModel } from "./BaseStepModel";
-import { runInAction, observable } from "mobx";
+import { runInAction, observable, action } from "mobx";
 import { Step3Component } from "../views/Step3Component";
-import { StepperModel } from "./StepperModel";
+import { WebSiteStepperModel } from "./WebSiteStepperModel";
 
 export class Step3Model extends BaseStepModel {
   @observable
@@ -9,19 +9,19 @@ export class Step3Model extends BaseStepModel {
   @observable
   connectionString: string;
   @observable
-  adminUserEmail: string;
+  dbAdminUserEmail: string;
   @observable
-  adminUserPassword;
+  dbAdminUserPassword;
 
-  constructor(stepperContainer: StepperModel) {
+  constructor(stepperContainer: WebSiteStepperModel) {
     super(stepperContainer);
     runInAction(() => {
       this.title = "Step 3 - Database";
       this.component = Step3Component;
       this.databaseName = "";
       this.connectionString = "";
-      this.adminUserEmail = "";
-      this.adminUserPassword = "";
+      this.dbAdminUserEmail = "";
+      this.dbAdminUserPassword = "";
       this.process = 100;
     });
   }
@@ -30,11 +30,14 @@ export class Step3Model extends BaseStepModel {
     if (
       this.connectionString.length !== 0 &&
       this.databaseName.length !== 0 &&
-      this.adminUserEmail.length !== 0 &&
-      this.adminUserPassword.length !== 0
+      this.dbAdminUserEmail.length !== 0 &&
+      this.dbAdminUserPassword.length !== 0
     )
       return super.isValid();
 
     return false;
   };
+
+  @action
+  saveModel() {}
 }

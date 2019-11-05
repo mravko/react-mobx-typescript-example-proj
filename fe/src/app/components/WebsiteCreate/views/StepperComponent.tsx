@@ -1,11 +1,10 @@
 import * as React from "react";
-import { StepperModel } from "../models/StepperModel";
+import { WebSiteStepperModel } from "../models/WebSiteStepperModel";
 import { observer } from "mobx-react";
 import { runInAction } from "mobx";
 import { Step1Model } from "../models/Step1Model";
 import { Step2Model } from "../models/Step2Model";
 import Button from "@material-ui/core/Button";
-import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { Step3Model } from "../models/Step3Model";
@@ -20,7 +19,7 @@ export default class StepperComponent extends React.Component<
     super(props);
 
     runInAction(() => {
-      this.viewModel = new StepperModel();
+      this.viewModel = new WebSiteStepperModel();
 
       let step1 = new Step1Model(this.viewModel);
       let step2 = new Step2Model(this.viewModel);
@@ -33,12 +32,12 @@ export default class StepperComponent extends React.Component<
     });
   }
 
-  viewModel: StepperModel;
+  viewModel: WebSiteStepperModel;
 
   public render() {
     const Component: any = this.viewModel.currentStepModel.component;
     return (
-      <Paper style={{ width: 500, padding: 20 }}>
+      <>
         <Typography variant="h5" component="h3">
           {this.viewModel.currentStepModel.title}
         </Typography>
@@ -76,7 +75,7 @@ export default class StepperComponent extends React.Component<
             Next
           </Button>
         </div>
-      </Paper>
+      </>
     );
   }
 }

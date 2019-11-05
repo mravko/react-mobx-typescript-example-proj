@@ -1,20 +1,15 @@
 import * as React from "react";
-import { useEffect } from "react";
 import apstore from "app/stores/AppStore";
-import StepperComponent from "app/components/stepper/views/StepperComponent";
+import WebSitesListComponent from "app/components/WebsiteList/views/WebSitesListComponent";
 
-interface ILandingPageProps {}
-
-const LandingPage: React.FunctionComponent<ILandingPageProps> = () => {
-  useEffect(() => {
+export default class LandingPage extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {
     apstore.setPageTitle("Landing page");
-  }, []);
-
-  return (
-    <div>
-      <StepperComponent></StepperComponent>
-    </div>
-  );
-};
-
-export default LandingPage;
+  }
+  public render() {
+    return <WebSitesListComponent></WebSitesListComponent>;
+  }
+}
