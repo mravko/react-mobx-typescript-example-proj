@@ -1,7 +1,8 @@
 import { observable, computed, action } from "mobx";
 import * as React from "react";
+import { StepperModel } from "./StepperModel";
 
-export class StepModel {
+export class BaseStepModel {
   @computed
   get isValid(): boolean {
     return true;
@@ -9,10 +10,16 @@ export class StepModel {
   @observable
   title: string;
 
-  component: React.ReactElement;
+  component: React.ComponentClass;
 
   @action
   changeValue = e => {
     this[e.target.name] = e.target.value;
   };
+
+  stepperContainer: StepperModel;
+
+  constructor(stepperContainer: StepperModel) {
+    this.stepperContainer = stepperContainer;
+  }
 }

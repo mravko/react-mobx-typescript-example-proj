@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useEffect } from "react";
 import apstore from "app/stores/AppStore";
-import StepperComponent from "app/components/stepper/StepperComponent";
+import StepperComponent from "app/components/stepper/views/StepperComponent";
 
 interface ILandingPageProps {}
 

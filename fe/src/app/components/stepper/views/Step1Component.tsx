@@ -1,23 +1,6 @@
 import * as React from "react";
-import { StepModel } from "./StepModel";
-import { runInAction } from "mobx";
 import { observer } from "mobx-react";
-
-export class Step1Model extends StepModel {
-  websiteName: string;
-  websiteUrl: string;
-  adminUserEmail: string;
-  adminUserPassword;
-
-  constructor() {
-    super();
-
-    runInAction(() => {
-      this.title = "Step 1";
-      this.component = <Step1Component viewModel={this}></Step1Component>;
-    });
-  }
-}
+import { Step1Model } from "../models/Step1Model";
 
 interface Step1ComponentProps {
   viewModel: Step1Model;
@@ -25,18 +8,30 @@ interface Step1ComponentProps {
 @observer
 export class Step1Component extends React.Component<Step1ComponentProps> {
   viewModel: Step1Model;
+  firstInputRef;
 
   constructor(props: Step1ComponentProps) {
     super(props);
 
     this.viewModel = props.viewModel;
+    this.firstInputRef = React.createRef();
   }
+
+  componentDidMount() {
+    this.firstInputRef.current.focus();
+  }
+
+  onSubmit = e => {
+    e.preventDefault();
+    this.viewModel.stepperContainer.nextStep();
+  };
 
   public render() {
     return (
-      <div>
+      <form onSubmit={this.onSubmit}>
         <label>Website name</label> <br />
         <input
+          ref={this.firstInputRef}
           name="websiteName"
           type="text"
           value={this.viewModel.websiteName}
@@ -66,7 +61,8 @@ export class Step1Component extends React.Component<Step1ComponentProps> {
           value={this.viewModel.adminUserPassword}
           onChange={this.viewModel.changeValue}
         />
-      </div>
+        <button type="submit" hidden></button>
+      </form>
     );
   }
 }

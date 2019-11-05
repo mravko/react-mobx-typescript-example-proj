@@ -1,22 +1,28 @@
 import RootModel from "app/models/RootModel";
 import { observable, action, computed, runInAction } from "mobx";
 import AppStore from "app/stores/AppStore";
-import { StepModel } from "./StepModel";
+import { BaseStepModel } from "./BaseStepModel";
 
 export class StepperModel extends RootModel {
   @observable
   currentStepIndex: number;
 
   @observable
-  stepsArray: StepModel[];
+  stepsArray: BaseStepModel[];
 
-  constructor(stepsArray: StepModel[]) {
+  constructor() {
     super();
     runInAction(() => {
-      this.stepsArray = stepsArray;
+      this.stepsArray = [];
       this.currentStepIndex = 0;
     });
   }
+
+  @action
+  addStep = (step: BaseStepModel) => {
+    this.stepsArray.push(step);
+    return this;
+  };
 
   @action
   nextStep = () => {
@@ -39,7 +45,7 @@ export class StepperModel extends RootModel {
   };
 
   @computed
-  get currentStepModel(): StepModel {
+  get currentStepModel(): BaseStepModel {
     return this.stepsArray[this.currentStepIndex];
   }
 }

@@ -1,22 +1,23 @@
-import { StepperModel } from "./StepperModel";
-import { StepModel } from "./StepModel";
+import { StepperModel } from "../models/StepperModel";
+import { BaseStepModel } from "../models/BaseStepModel";
 
 describe("stepper model tests", () => {
   let stepperModel: StepperModel;
 
   beforeEach(() => {
-    let stepArray: StepModel[] = [];
-    let step1 = new StepModel();
-    step1.title = "Step 1";
-    let step2 = new StepModel();
-    step2.title = "Step 2";
-    let step3 = new StepModel();
-    step3.title = "Step 3";
-    stepArray.push(step1);
-    stepArray.push(step2);
-    stepArray.push(step3);
+    stepperModel = new StepperModel();
 
-    stepperModel = new StepperModel(stepArray);
+    let step1 = new BaseStepModel(stepperModel);
+    step1.title = "Step 1";
+    let step2 = new BaseStepModel(stepperModel);
+    step2.title = "Step 2";
+    let step3 = new BaseStepModel(stepperModel);
+    step3.title = "Step 3";
+
+    stepperModel
+      .addStep(step1)
+      .addStep(step2)
+      .addStep(step3);
   });
 
   it("creates new stepper model", () => {
