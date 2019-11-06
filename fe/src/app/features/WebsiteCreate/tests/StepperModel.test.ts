@@ -1,11 +1,12 @@
 import { WebSiteStepperModel } from "../models/WebSiteStepperModel";
 import { BaseStepModel } from "../models/BaseStepModel";
+import { WebSitesListModel } from "app/features/WebsiteList/models/WebSitesListModel";
 
 describe("stepper model tests", () => {
   let stepperModel: WebSiteStepperModel;
 
   beforeEach(() => {
-    stepperModel = new WebSiteStepperModel();
+    stepperModel = new WebSiteStepperModel(new WebSitesListModel());
 
     let step1 = new BaseStepModel(stepperModel);
     step1.title = "Step 1";

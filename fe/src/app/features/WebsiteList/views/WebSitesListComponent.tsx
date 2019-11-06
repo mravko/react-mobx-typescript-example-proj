@@ -1,12 +1,7 @@
 import * as React from "react";
 import { WebSitesListModel } from "../models/WebSitesListModel";
 import { observer } from "mobx-react";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import StepperComponent from "app/components/WebsiteCreate/views/StepperComponent";
+import StepperComponent from "app/features/WebsiteCreate/views/StepperComponent";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -14,6 +9,7 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
+import GridComponent from "app/reusable_components/Grid/views/GridComponent";
 
 @observer
 class WebSitesListComponent extends React.Component {
@@ -29,30 +25,23 @@ class WebSitesListComponent extends React.Component {
   }
 
   public render() {
-    if (!this.viewModel.hasData) return <div>No data</div>;
+    if (!this.viewModel.hasData)
+      return (
+        <div>
+          No data
+          <Fab
+            color="primary"
+            aria-label="add"
+            onClick={this.viewModel.openCreateDialog}
+          >
+            <AddIcon />
+          </Fab>
+        </div>
+      );
 
     return (
       <>
-        <Table>
-          <TableHead>
-            <TableRow>
-              {this.viewModel.columns.map(c => (
-                <TableCell key={c}>{c}</TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {this.viewModel.rows.map(r => {
-              return (
-                <TableRow key={r["id"]}>
-                  {this.viewModel.columns.map(c => (
-                    <TableCell key={r[c]}>{r[c]}</TableCell>
-                  ))}
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
+        <GridComponent adapter={this.viewModel}></GridComponent>
         <Dialog open={this.viewModel.isCreateDialogOpen}>
           <DialogTitle>
             Create
@@ -65,7 +54,7 @@ class WebSitesListComponent extends React.Component {
             </IconButton>
           </DialogTitle>
           <DialogContent>
-            <StepperComponent></StepperComponent>
+            <StepperComponent listModel={this.viewModel}></StepperComponent>
           </DialogContent>
         </Dialog>
         <Fab

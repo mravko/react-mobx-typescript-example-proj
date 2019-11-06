@@ -11,4 +11,17 @@ export default class ApiService {
   static async GetWebsites() {
     return this.client.get("/websites");
   }
+
+  static async SaveWebsite(data: any) {
+    return this.client.post("/websites", {
+      websiteName: data.websiteName,
+      websiteUrl: data.websiteUrl,
+      databaseName: data.databaseName,
+      connectionString: data.connectionString
+    });
+  }
+
+  static async RemoveWebsite(id: number) {
+    return this.client.delete("/websites/" + id);
+  }
 }

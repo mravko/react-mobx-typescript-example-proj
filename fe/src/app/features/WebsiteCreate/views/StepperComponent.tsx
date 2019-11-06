@@ -8,8 +8,11 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { Step3Model } from "../models/Step3Model";
+import { WebSitesListModel } from "app/features/WebsiteList/models/WebSitesListModel";
 
-export interface IStepperComponentProps {}
+export interface IStepperComponentProps {
+  listModel: WebSitesListModel;
+}
 
 @observer
 export default class StepperComponent extends React.Component<
@@ -19,7 +22,7 @@ export default class StepperComponent extends React.Component<
     super(props);
 
     runInAction(() => {
-      this.viewModel = new WebSiteStepperModel();
+      this.viewModel = new WebSiteStepperModel(props.listModel);
 
       let step1 = new Step1Model(this.viewModel);
       let step2 = new Step2Model(this.viewModel);

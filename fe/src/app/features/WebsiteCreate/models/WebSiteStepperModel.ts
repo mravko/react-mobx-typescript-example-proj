@@ -2,6 +2,8 @@ import RootModel from "app/models/RootModel";
 import { observable, action, computed, runInAction } from "mobx";
 import AppStore from "app/stores/AppStore";
 import { BaseStepModel } from "./BaseStepModel";
+import ApiService from "app/services/ApiService";
+import { WebSitesListModel } from "app/features/WebsiteList/models/WebSitesListModel";
 
 export class WebSiteStepperModel extends RootModel {
   @observable
@@ -10,8 +12,11 @@ export class WebSiteStepperModel extends RootModel {
   @observable
   stepsArray: BaseStepModel[];
 
-  constructor() {
+  listModel: WebSitesListModel;
+
+  constructor(listModel: WebSitesListModel) {
     super();
+    this.listModel = listModel;
     runInAction(() => {
       this.stepsArray = [];
       this.currentStepIndex = 0;
@@ -59,6 +64,9 @@ export class WebSiteStepperModel extends RootModel {
     for (const step of this.stepsArray) {
       Object.assign(obj, step);
     }
-    debugger;
+    await ApiService.SaveWebsite(obj).then(() => {
+      this.listModel.init();
+      this.listModel.closeCreateDialog();
+    });
   };
 }

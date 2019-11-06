@@ -51,6 +51,20 @@ namespace api.Controllers
 
 			return Ok();
 		}
+
+		[HttpDelete("{id}")]
+		public IActionResult Delete(string id)
+		{
+			var toReturn = (List<SiteModel>)memoryCache.Get("SiteModel");
+			var toRemove = toReturn.FirstOrDefault(x => x.Id == Guid.Parse(id));
+			if (toRemove != null)
+			{
+				toReturn.Remove(toRemove);
+			}
+			memoryCache.Set("SiteModel", toReturn);
+
+			return Ok();
+		}
 	}
 
 	public class SiteModel

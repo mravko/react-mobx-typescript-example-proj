@@ -1,6 +1,6 @@
 import * as React from "react";
 import apstore from "app/stores/AppStore";
-import WebSitesListComponent from "app/components/WebsiteList/views/WebSitesListComponent";
+import WebSitesListComponent from "app/features/WebsiteList/views/WebSitesListComponent";
 
 export default class LandingPage extends React.Component {
   constructor(props) {

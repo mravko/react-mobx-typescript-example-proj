@@ -1,5 +1,5 @@
 import { BaseStepModel } from "./BaseStepModel";
-import { runInAction, observable, action } from "mobx";
+import { runInAction, observable } from "mobx";
 import { Step3Component } from "../views/Step3Component";
 import { WebSiteStepperModel } from "./WebSiteStepperModel";
 
@@ -37,7 +37,4 @@ export class Step3Model extends BaseStepModel {
 
     return false;
   };
-
-  @action
-  saveModel() {}
 }
